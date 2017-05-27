@@ -1,10 +1,11 @@
-{% load static %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 	<head>
         <title>Eventex - O maior encontro hacker do mundo!</title>
-
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="Eventex - O maior encontro hacker do mundo!">
         <meta name="author" content="wttd">
@@ -27,7 +28,7 @@
             <header class="header header-inline min-h-3 row desktop-12 container" role="banner">
 
                 <div class="site-logo">
-                    <h1><a href="/" rel="home">Eventex</h1>
+                    <h1><a href="/" rel="home">Eventex</a></h1>
                     <p class="site-description screen-reader-only">O maior encontro hacker do mundo!</p>
                 </div>
 
@@ -50,7 +51,7 @@
         	<div class="content row padding-bottom-3 desktop-12 container">
                 <h1>Formulário de Inscrição</h1>
                 <div class="desktop-6">
-                    <form action="." method="post">
+                    <form action="." novalidate method="post">
                         {% csrf_token %}
                         <div class="form-row label-block input-text">
                             <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
