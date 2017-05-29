@@ -1,0 +1,14 @@
+Oi,
+
+Obrigado por informar esses dados
+
+Nome: {{ name }}
+CPF: {{ cpf }}
+Email: {{ email }}
+Telefone: {{ phone }}
+
+Entraremos em contato para concluir cadastro
+
+Atenciosamente,
+--
+Morena
