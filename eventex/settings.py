@@ -104,7 +104,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'http://s3.amazonaws.com/wttd-eventex-hpfn/static/'
+STATIC_URL = 'https://s3.amazonaws.com/wttd-eventex-hpfn/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #Email configuration
