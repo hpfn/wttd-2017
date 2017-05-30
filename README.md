@@ -3,6 +3,9 @@ projeto do curso Welcome to the Django - 2017.
 # Eventx
 Sistema de Eventos encomendado pela Morena.
 
+[![Code Health](https://landscape.io/github/hpfn/wttd-2017/master/landscape.svg?style=flat)](https://landscape.io/github/hpfn/wttd-2017/master)
+[![Build Status](https://travis-ci.org/hpfn/wttd-2017.svg?branch=master)](https://travis-ci.org/hpfn/wttd-2017)
+
 ## Como desenvolver ?
 
 1. Clone o repositório.
