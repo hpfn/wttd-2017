@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core import mail
+from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template.loader import render_to_string
@@ -41,6 +42,8 @@ def detail(request, pk):
     try:
         subscription = Subscription.objects.get(pk=pk)
     except Subscription.DoesNotExist:
+        raise Http404
+    except ValidationError:
         raise Http404
 
     return render(request, 'subscriptions/subscription_detail.html',
