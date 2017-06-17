@@ -31,7 +31,8 @@ class SubscriptionFormTest(TestCase):
 
     def test_template_has_invalid_email(self):
         form = self.make_validated_form(email='asdf')
-        self.assertFormErrorMessage(form, 'email', 'Informe um endereço de email válido.')
+        #self.assertFormErrorMessage(form, 'email', 'Informe um endereço de email válido.')
+        self.assertFormErrorCode(form, 'email', 'invalid')
 
     def test_phone_is_optional(self):
         """ Phone is optinal """
