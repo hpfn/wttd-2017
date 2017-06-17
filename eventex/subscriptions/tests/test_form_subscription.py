@@ -1,6 +1,6 @@
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
-
+from django.shortcuts import resolve_url as r
 
 class SubscriptionFormTest(TestCase):
     def test_form_has_fields(self):
@@ -24,6 +24,24 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(name="HERBERT fortes")
         self.assertEqual('Herbert Fortes', form.cleaned_data['name'])
 
+    def test_email_is_optional(self):
+        """ Email is optinal """
+        form = self.make_validated_form(email='')
+        self.assertFalse(form.errors)
+
+    def test_template_has_invalid_email(self):
+        form = self.make_validated_form(email='asdf')
+        self.assertFormErrorMessage(form, 'email', 'Informe um endereço de email válido.')
+
+    def test_phone_is_optional(self):
+        """ Phone is optinal """
+        form = self.make_validated_form(phone='')
+        self.assertFalse(form.errors)
+
+    def test_must_inform_phone_or_email(self):
+        """ Email and Phone are optional, but one must be informed """
+        form = self.make_validated_form(email='', phone='')
+        self.assertListEqual(['__all__'], list(form.errors))
 
     def assertFormErrorCode(self, form, field, code):
         errors = form.errors.as_data()
@@ -31,10 +49,10 @@ class SubscriptionFormTest(TestCase):
         exception = errors_list[0]
         self.assertEqual(code, exception.code)
 
-    # def assertFormErrorMessage(self, form, field, msg):
-    #     errors = form.errors
-    #     errors_list = errors[field]
-    #     self.assertListEqual([msg], errors_list)
+    def assertFormErrorMessage(self, form, field, msg):
+         errors = form.errors
+         errors_list = errors[field]
+         self.assertListEqual([msg], errors_list)
 
     def make_validated_form(self, **kwargs):
         valid = dict(name='Herbert Fortes', cpf='12345678901',
