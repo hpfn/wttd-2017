@@ -84,3 +84,9 @@ class TemplateRegressionTest(TestCase):
         response = self.client.post(r('subscriptions:new'), invalid_data)
 
         self.assertContains(response, '<ul class="errorlist nonfield">')
+
+    def test_template_has_email_error(self):
+        invalid_data = dict(name='Herbert Fortes', cpf='12345678901', email='asdf')
+        response = self.client.post(r('subscriptions:new'), invalid_data)
+
+        self.assertContains(response, '<ul class="errorlist"><li>Informe um endereço de email válido.</li></ul>')

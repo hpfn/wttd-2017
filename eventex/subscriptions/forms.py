@@ -31,10 +31,12 @@ class SubscriptionForm(forms.Form):
         return ' '.join((words))
 
     def clean(self):
-        try:
-            if not self.cleaned_data['email'] and not self.cleaned_data['phone']:
-                raise ValidationError('Informe seu e-mail ou telefone.')
-        except KeyError as e:
-            raise ValidationError(e)
+        # try:
+        #     if not self.cleaned_data['email'] and not self.cleaned_data['phone']:
+        #     raise ValidationError('Informe seu e-mail ou telefone.')
+        # except KeyError as e:
+        #     raise ValidationError(e)
+        if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
+            raise ValidationError('Informe seu e-mail ou telefone.')
 
         return self.cleaned_data
