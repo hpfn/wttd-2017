@@ -60,11 +60,11 @@
 
         <!-- SPEAKERS -->
         <section id="speakers">
-            <div class="'speakers text-align-center row desktop-8 padding-botton-2 container">
+            <div class="speakers text-align-center row desktop-8 padding-botton-2 container">
                 <h2>Palestrantes Convidados</h2>
                 {% for speaker in speakers %}
                 <div class="desktop-4">
-                    <img class="photo" src="{{ speaker.photo }}">
+                    <img src="{{ speaker.photo }}">
                     <h4>
                         <a href="{{ speaker.get_absolute_url }}">
                             {{ speaker.name }}
