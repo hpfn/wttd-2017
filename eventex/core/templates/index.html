@@ -64,7 +64,7 @@
                 <h2>Palestrantes Convidados</h2>
                 {% for speaker in speakers %}
                 <div class="desktop-4">
-                    <img src="{{ speaker.photo }}">
+                    <img class="photo" src="{{ speaker.photo }}">
                     <h4>
                         <a href="{{ speaker.get_absolute_url }}">
                             {{ speaker.name }}
