@@ -3,15 +3,14 @@ from django.core.exceptions import ValidationError
 
 from eventex.subscriptions.models import Subscription
 
-
-#def validate_cpf(value):
+# def validate_cpf(value):
 #    if not value.isdigit():
 #        raise ValidationError('CPF deve conter apenas números.', 'digits')
 #
 #    if len(value) != 11:
 #        raise ValidationError('CPF deve ter 11 números.', 'length')
 
-#def validate_email(value):
+# def validate_email(value):
 #    from django.core.validators import validate_email
 #    try:
 #        validate_email(value)
@@ -29,7 +28,7 @@ class SubscriptionFormOLD(forms.Form):
     def clean_name(self):
         name = self.cleaned_data['name']
         words = [w.capitalize() for w in name.split()]
-        return ' '.join((words))
+        return ' '.join(words)
 
     def clean(self):
         # try:
@@ -53,7 +52,7 @@ class SubscriptionForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         words = [w.capitalize() for w in name.split()]
-        return ' '.join((words))
+        return ' '.join(words)
 
     def clean(self):
         self.cleaned_data = super().clean()
