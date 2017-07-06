@@ -29,11 +29,11 @@ class SubscriptionFormTest(TestCase):
 
     def test_valid_digits_only_numbers(self):
         cpf = '52998224725'
-        self.assertIsNone(validate_cpf(cpf))
+        self.assertTrue(validate_cpf(cpf))
 
     def test_valid_digits_dot_hyphen(self):
         cpf = '529.982.247-25'
-        self.assertIsNone(validate_cpf(cpf))
+        self.assertTrue(validate_cpf(cpf))
 
     def test_check_repeated_number(self):
         form = self.make_validated_form(cpf=99999999999)

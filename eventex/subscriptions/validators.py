@@ -21,8 +21,9 @@ def validate_cpf(value):
     segundo_digito = str_num[-1]
 
     try:
-        validar_soma_digito(primeiro_digito, 10, str_primeiro_digito)
-        validar_soma_digito(segundo_digito, 11, str_segundo_digito)
+        if (validar_soma_digito(primeiro_digito, 10, str_primeiro_digito) and
+                validar_soma_digito(segundo_digito, 11, str_segundo_digito)):
+            return True
     except ValueError as e:
         raise ValidationError('CPF deve ter números. Pode ter ponto e hífen.', 'digits')
 
