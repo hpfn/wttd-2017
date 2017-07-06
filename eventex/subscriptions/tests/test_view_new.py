@@ -40,7 +40,7 @@ class SubscriptionsNewGet(TestCase):
 
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
-        data = dict(name='Herbert Fortes', cpf='12345678901', email='terberh@gmail.com',
+        data = dict(name='Herbert Fortes', cpf='529.982.247-25', email='terberh@gmail.com',
                     phone='21-99921-6226')
         self.resp = self.client.post(r('subscriptions:new'), data)
         self.uuid_pk = Subscription.objects.first().uuid_pk

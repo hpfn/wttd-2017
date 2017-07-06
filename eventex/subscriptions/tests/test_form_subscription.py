@@ -1,6 +1,8 @@
 from django.test import TestCase
+
 from eventex.subscriptions.forms import SubscriptionForm
-from django.shortcuts import resolve_url as r
+from eventex.subscriptions.validators import validar_soma_digito, validate_cpf
+
 
 class SubscriptionFormTest(TestCase):
     def test_form_has_fields(self):
@@ -10,14 +12,36 @@ class SubscriptionFormTest(TestCase):
         self.assertSequenceEqual(expected, list(form.fields))
 
     def test_cpf_is_digit(self):
-        """ CPF must only accept digits """
-        form = self.make_validated_form(cpf='ABCD5678901')
-        self.assertFormErrorCode(form, 'cpf', 'digits')
+         """ CPF must only accept digits """
+         form = self.make_validated_form(cpf='ABCD5678901')
+         self.assertFormErrorCode(form, 'cpf', 'digits')
 
-    def test_cpf_has_11_digits(self):
-        """ CPF must have 11 digits """
-        form = self.make_validated_form(cpf='1234')
-        self.assertFormErrorCode(form, 'cpf', 'length')
+    def test_cpf_has_size_11_or_14(self):
+        """ CPF must have size 11 or 14 """
+        cpfs = ['123456789', '1234567890123']
+        for cpf in cpfs:
+            with self.subTest():
+                form = self.make_validated_form(cpf=cpf)
+                self.assertFormErrorCode(form, 'cpf', 'length')
+
+        form = self.make_validated_form(cpf='123.456.789-123')
+        self.assertFormErrorCode(form, 'cpf', 'max_length')
+
+    def test_valid_digits_only_numbers(self):
+        cpf = '52998224725'
+        self.assertIsNone(validate_cpf(cpf))
+
+    def test_valid_digits_dot_hyphen(self):
+        cpf = '529.982.247-25'
+        self.assertIsNone(validate_cpf(cpf))
+
+    def test_check_repeated_number(self):
+        form = self.make_validated_form(cpf=99999999999)
+        self.assertFormErrorCode(form, 'cpf', 'rep_num')
+
+    def test_sequencial_number(self):
+        form = self.make_validated_form(cpf='123.456.789-12')
+        self.assertFormErrorCode(form, 'cpf', 'invalid')
 
     def test_name_must_be_capitalized(self):
         """ Name must be captalized """
@@ -26,7 +50,7 @@ class SubscriptionFormTest(TestCase):
 
     def test_email_is_optional(self):
         """ Email is optinal """
-        form = self.make_validated_form(email='')
+        form = self.make_validated_form(email='', cpf='52998224725')
         self.assertFalse(form.errors)
 
     def test_template_has_invalid_email(self):
@@ -36,12 +60,12 @@ class SubscriptionFormTest(TestCase):
 
     def test_phone_is_optional(self):
         """ Phone is optinal """
-        form = self.make_validated_form(phone='')
+        form = self.make_validated_form(phone='', cpf='52998224725')
         self.assertFalse(form.errors)
 
     def test_must_inform_phone_or_email(self):
         """ Email and Phone are optional, but one must be informed """
-        form = self.make_validated_form(email='', phone='')
+        form = self.make_validated_form(email='', phone='', cpf ='52998224725')
         self.assertListEqual(['__all__'], list(form.errors))
 
     def assertFormErrorCode(self, form, field, code):
