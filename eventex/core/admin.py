@@ -6,6 +6,7 @@ class ContactInLine(admin.TabularInline):
     model = Contact
     extra = 1
 
+
 class SpeakerModelAdmin(admin.ModelAdmin):
     inlines = [ContactInLine]
     prepopulated_fields = {'slug': ('name',)}

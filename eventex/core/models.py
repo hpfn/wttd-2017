@@ -37,6 +37,7 @@ class Contact(models.Model):
     value = models.CharField('valor', max_length=255)
 
     objects = KindQuerySet.as_manager()
+
     # objects = KindContactManager()
     # emails = EmailContactManager()
     # phones = PhoneContactManager()
@@ -47,6 +48,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.value
+
 
 class Talk(models.Model):
     title = models.CharField('título', max_length=200)

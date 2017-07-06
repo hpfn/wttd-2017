@@ -14,12 +14,14 @@ class PhoneContactManager(models.Manager):
         return qs
 """
 
+
 class KindQuerySet(models.QuerySet):
     def emails(self):
         return self.filter(kind=self.model.EMAIL)
 
     def phones(self):
         return self.filter(kind=self.model.PHONE)
+
 
 """
 class KindContactManager(models.Manager):
@@ -34,6 +36,7 @@ class KindContactManager(models.Manager):
         # return self.filter(kind=self.model.PHONE)
         return self.get_queryset().phones()
 """
+
 
 class PeriodManager(models.Manager):
     MIDDAY = '12:00'
