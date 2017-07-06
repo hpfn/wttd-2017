@@ -4,6 +4,7 @@ from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
 from django.shortcuts import resolve_url as r
 
+
 class SubscriptionsNewGet(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('subscriptions:new'))
@@ -38,6 +39,7 @@ class SubscriptionsNewGet(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
+
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
         data = dict(name='Herbert Fortes', cpf='529.982.247-25', email='terberh@gmail.com',
@@ -54,6 +56,7 @@ class SubscriptionsNewPostValid(TestCase):
 
     def test_save_subscription(self):
         self.assertTrue(Subscription.objects.exists())
+
 
 class SubscriptionsNewPostInvalid(TestCase):
     def setUp(self):

@@ -2,6 +2,7 @@ from django.core import mail
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
+
 class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name='Herbert Fortes', cpf='529.982.247-25', email='terberh@gmail.com',
@@ -31,4 +32,3 @@ class SubscribePostValid(TestCase):
         for content in contents:
             with self.subTest():
                 self.assertIn(content, self.email.body)
-

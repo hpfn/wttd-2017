@@ -12,9 +12,9 @@ class SubscriptionFormTest(TestCase):
         self.assertSequenceEqual(expected, list(form.fields))
 
     def test_cpf_is_digit(self):
-         """ CPF must only accept digits """
-         form = self.make_validated_form(cpf='ABCD5678901')
-         self.assertFormErrorCode(form, 'cpf', 'digits')
+        """ CPF must only accept digits """
+        form = self.make_validated_form(cpf='ABCD5678901')
+        self.assertFormErrorCode(form, 'cpf', 'digits')
 
     def test_cpf_has_size_11_or_14(self):
         """ CPF must have size 11 or 14 """
@@ -55,7 +55,7 @@ class SubscriptionFormTest(TestCase):
 
     def test_template_has_invalid_email(self):
         form = self.make_validated_form(email='asdf')
-        #self.assertFormErrorMessage(form, 'email', 'Informe um endereço de email válido.')
+        # self.assertFormErrorMessage(form, 'email', 'Informe um endereço de email válido.')
         self.assertFormErrorCode(form, 'email', 'invalid')
 
     def test_phone_is_optional(self):
@@ -65,7 +65,7 @@ class SubscriptionFormTest(TestCase):
 
     def test_must_inform_phone_or_email(self):
         """ Email and Phone are optional, but one must be informed """
-        form = self.make_validated_form(email='', phone='', cpf ='52998224725')
+        form = self.make_validated_form(email='', phone='', cpf='52998224725')
         self.assertListEqual(['__all__'], list(form.errors))
 
     def assertFormErrorCode(self, form, field, code):
@@ -75,9 +75,9 @@ class SubscriptionFormTest(TestCase):
         self.assertEqual(code, exception.code)
 
     def assertFormErrorMessage(self, form, field, msg):
-         errors = form.errors
-         errors_list = errors[field]
-         self.assertListEqual([msg], errors_list)
+        errors = form.errors
+        errors_list = errors[field]
+        self.assertListEqual([msg], errors_list)
 
     def make_validated_form(self, **kwargs):
         valid = dict(name='Herbert Fortes', cpf='12345678901',
