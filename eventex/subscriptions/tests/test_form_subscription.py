@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from eventex.subscriptions.forms import SubscriptionForm
-from eventex.subscriptions.validators import validar_soma_digito, validate_cpf
+from eventex.subscriptions.validators import validate_cpf
 
 
 class SubscriptionFormTest(TestCase):
