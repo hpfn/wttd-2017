@@ -42,8 +42,9 @@ class SpeakerModelAdminTest(TestCase):
          self.assertEqual(link, self.model_admin.website_link(self.queryset[0]))
 
     def test_photo_img(self):
-        photo_img = '<img width="32px" src={} />'.format('http://hbn.link/arnaldinho-pic')
-        self.assertEqual(photo_img, self.model_admin.photo_img(self.queryset[0]))
+        # photo_img = '<img width="32px" src={} />'.format('http://hbn.link/arnaldinho-pic')
+        self.assertEqual('<img width="32px" src=http://hbn.link/arnaldinho-pic />',
+                         self.model_admin.photo_img(self.queryset[0]))
 
     def test_phone(self):
         self.assertEqual('21-988881111', self.model_admin.phone(self.queryset[0]).value)
