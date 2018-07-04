@@ -38,7 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # the order is important. If you are going to use it only for media check docs
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'test_without_migrations',
     'django_extensions',
     'eventex.core',
@@ -105,9 +108,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-#STATIC_URL = '/static/'
-STATIC_URL = 'https://s3.amazonaws.com/wttd-eventex-hpfn/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+# STATIC_URL = 'https://s3.amazonaws.com/wttd-eventex-hpfn/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# When using Cloudinary run collectstatic
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+# Cloudinary credentials
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET')
+}
 
 #Email configuration
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

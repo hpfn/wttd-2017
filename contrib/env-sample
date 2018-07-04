@@ -2,6 +2,12 @@ SECRET_KEY=this_is_not_a_good_secret
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1, .localhost, .herokuapp.com
 
+# Cloudinary
+CLOUDINARY_NAME=xxx
+CLOUDINARY_API_KEY=xxx
+CLOUDINARY_API_SECRET=xxx
+
+
 # dev
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 EMAIL_HOST=localhost
