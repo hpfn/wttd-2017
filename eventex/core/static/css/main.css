@@ -303,10 +303,7 @@ section header h2 {
 /* VENUE */
 
 #venue {
-    position: relative;
-    background: url("../img/map.jpg") no-repeat center center;
-    background-size: cover;
-    padding-bottom: 70px;
+
 }
 
 .venue-address {
