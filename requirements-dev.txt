@@ -1,2 +1,2 @@
 -r requirements.txt
-ipython[notebook]
+ipython[notebook]==6.4.0
