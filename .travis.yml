@@ -3,6 +3,10 @@ python:
   - "3.5.3"
 install:
   - cp contrib/env-sample .env
-  - pip install -q -r requirements.txt
+  - pip install -q -r requirements.txt codecov
 script:
-  - python manage.py test
+  - coverage run manage.py test
+  - coverage report
+after_success:
+  - codecov
+

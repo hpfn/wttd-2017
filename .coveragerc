@@ -1,0 +1,5 @@
+[run]
+source = eventex
+omit =
+    .wttd
+    */migrations/*.py
