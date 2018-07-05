@@ -7,7 +7,7 @@ Sistema de Eventos encomendado pela Morena.
 [![Build Status](https://travis-ci.org/hpfn/wttd-2017.svg?branch=master)](https://travis-ci.org/hpfn/wttd-2017)
 [![Updates](https://pyup.io/repos/github/hpfn/wttd-2017/shield.svg)](https://pyup.io/repos/github/hpfn/wttd-2017/)
 [![Python 3](https://pyup.io/repos/github/hpfn/wttd-2017/python-3-shield.svg)](https://pyup.io/repos/github/hpfn/wttd-2017/)
-
+[![codecov](https://codecov.io/gh/hpfn/wttd-2017/branch/master/graph/badge.svg)](https://codecov.io/gh/hpfn/wttd-2017)
 
 ## Como desenvolver ?
 
