@@ -5,6 +5,9 @@ Sistema de Eventos encomendado pela Morena.
 
 [![Code Health](https://landscape.io/github/hpfn/wttd-2017/master/landscape.svg?style=flat)](https://landscape.io/github/hpfn/wttd-2017/master)
 [![Build Status](https://travis-ci.org/hpfn/wttd-2017.svg?branch=master)](https://travis-ci.org/hpfn/wttd-2017)
+[![Updates](https://pyup.io/repos/github/hpfn/wttd-2017/shield.svg)](https://pyup.io/repos/github/hpfn/wttd-2017/)
+[![Python 3](https://pyup.io/repos/github/hpfn/wttd-2017/python-3-shield.svg)](https://pyup.io/repos/github/hpfn/wttd-2017/)
+
 
 ## Como desenvolver ?
 
