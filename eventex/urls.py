@@ -12,6 +12,7 @@ Class-based views
 Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from eventex.core.views import home, speaker_detail, talk_list
@@ -25,3 +26,9 @@ urlpatterns = [
     url(r'^palestrantes/(?P<slug>[\w-]+)/$', speaker_detail, name='speaker_detail'),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(
+        url(r'^__debug__/', include(debug_toolbar.urls))
+    )
