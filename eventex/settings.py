@@ -32,7 +32,7 @@ DEFAULT_FROM_EMAIL = 'contato@eventex.com.br'
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,9 +46,9 @@ INSTALLED_APPS = (
     'django_extensions',
     'eventex.core',
     'eventex.subscriptions.apps.SubscriptionsConfig',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,7 +58,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-)
+]
+
+if DEBUG:
+    # Django Debug ToolBar
+    INSTALLED_APPS.append('debug_toolbar')  # extend
+    INTERNAL_IPS = '127.0.0.1'
+    MIDDLEWARE_CLASSES.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'eventex.urls'
 
