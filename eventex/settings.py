@@ -48,15 +48,14 @@ INSTALLED_APPS = [
     'eventex.subscriptions.apps.SubscriptionsConfig',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
 
@@ -64,7 +63,7 @@ if DEBUG:
     # Django Debug ToolBar
     INSTALLED_APPS.append('debug_toolbar')  # extend
     INTERNAL_IPS = '127.0.0.1'
-    MIDDLEWARE_CLASSES.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'eventex.urls'
 
