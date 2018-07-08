@@ -13,22 +13,24 @@ Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
+
 from eventex.core.views import home, speaker_detail, talk_list
 
-
 urlpatterns = [
-    url(r'^$', home, name='home'),
-    url(r'^inscricao/',
-        include('eventex.subscriptions.urls', namespace='subscriptions')),
-    url(r'^palestras/$', talk_list, name='talk_list'),
-    url(r'^palestrantes/(?P<slug>[\w-]+)/$', speaker_detail, name='speaker_detail'),
-    url(r'^admin/', include(admin.site.urls)),
+    path('', home, name='home'),
+    path('inscricao/',
+         include('eventex.subscriptions.urls', namespace='subscriptions')),
+    path('palestras/', talk_list, name='talk_list'),
+    # path('palestrantes/(?P<slug>[\w-]+)/$', speaker_detail, name='speaker_detail'),
+    path('palestrantes/<slug:slug>/', speaker_detail, name='speaker_detail'),
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns.append(
-        url(r'^__debug__/', include(debug_toolbar.urls))
+        path('__debug__/', include(debug_toolbar.urls))
     )
