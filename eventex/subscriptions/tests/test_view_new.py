@@ -1,8 +1,11 @@
 from django.core import mail
+from django.http import HttpResponse
+from django.shortcuts import resolve_url as r
 from django.test import TestCase
+from django.test.utils import ContextList
+
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
-from django.shortcuts import resolve_url as r
 
 
 class SubscriptionsNewGet(TestCase):
@@ -34,11 +37,42 @@ class SubscriptionsNewGet(TestCase):
         """ Html must contain csrf"""
         self.assertContains(self.resp, 'csrfmiddlewaretoken')
 
-    def test_has_form(self):
-        """ Context must have subscription form"""
-        form = self.resp.context['form']
-        self.assertIsInstance(form, SubscriptionForm)
+    def test_resp_is_httpresponse_instance(self):
+        """ resp_is_httpresponse_instance """
+        self.assertTrue(isinstance(self.resp, HttpResponse))
 
+    def test_resp_instance_context(self):
+        """ sefl.resp has context attr"""
+        self.assertTrue(hasattr(self.resp, 'context'))
+
+    def test_context_type(self):
+        """ what is context ? """
+        self.assertIsInstance(self.resp.context, ContextList)
+
+
+#     def test_get_context_item(self):
+#         self.assertTrue(self.resp.context.get('form'))
+#
+#     def test_has_form(self):
+#         """ Context must have subscription form"""
+#         form = self.resp.context['form']
+#         self.assertIsInstance(form, SubscriptionForm)
+#
+#     def test_context_has(self):
+#         """ Assert value in context """
+#         self.assertTrue(hasattr(self.resp.context['form'], 'fields'))
+#
+#     def test_context_form_attr(self):
+#         self.assertIn('name', self.resp.context['form'].fields)
+#
+#     def test_fields_type(self):
+#         """ No arquivo forms fields é uma lista """
+#         self.assertIsInstance(self.resp.context['form'].fields, OrderedDict)
+#
+#     def test_get_one_item_from_fields(self):
+#         """ Pega um item presente em fields """
+#         self.assertTrue(self.resp.context['form'].fields.get('name'))
+#
 
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
