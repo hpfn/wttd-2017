@@ -1,5 +1,5 @@
 -r requirements.txt
-ipython[notebook]==6.4.0
+ipython[notebook]==7.0.0
 django-debug-toolbar==1.9.1
 sqlparse==0.2.4
 
