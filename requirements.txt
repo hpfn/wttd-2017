@@ -11,7 +11,7 @@ pytz==2018.5
 # Cloudinary
 certifi==2018.8.24
 chardet==3.0.4
-cloudinary==1.13.0
+cloudinary==1.14.0
 django-cloudinary-storage==0.2.3
 idna==2.7
 mock==2.0.0
