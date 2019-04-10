@@ -7,7 +7,7 @@ gunicorn==19.9.0
 psycopg2-binary==2.7.6.1
 django-extensions==2.1.4
 django-test-without-migrations==0.6
-pytz==2018.7
+pytz==2019.1
 # Cloudinary
 certifi==2018.11.29
 chardet==3.0.4
